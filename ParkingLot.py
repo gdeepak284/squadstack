@@ -39,13 +39,13 @@ class ParkingLot:
     def leave_the_parking_lot(self, slot_id):
         if self.num_of_occupied_slots > 0 and self.slots[slot_id - 1] != 0:
             vehicle_num, driver_age= self.slots[slot_id-1].vehicle_num, self.slots[slot_id-1].driver_age
-            print("Slot number %s vacated, the car woth vehicle registration number %s left the space, the driver of "
-                  "the car was if the age %s" % (slot_id, vehicle_num, driver_age))
+            s = "Slot number %s vacated, the car woth vehicle registration number %s left the space, the driver of " \
+                "the car was if the age %s" % (slot_id, vehicle_num, driver_age)
             self.slots[slot_id - 1] = 0
             self.num_of_occupied_slots = self.num_of_occupied_slots - 1
-            return True
+            return s
         else:
-            return False
+            return "There was no car"
 
     def slot_numbers_for_driver_of_age(self, age):
         new_slot = []
@@ -56,10 +56,17 @@ class ParkingLot:
         return new_slot
 
     def slot_number_for_car_with_number(self, vehicle_num):
-        print("Hekllo %s" % vehicle_num)
         for i in range(len(self.slots)):
             if isinstance(self.slots[i], Car):
-                print(self.slots[i].__dict__)
-                if int(self.slots[i].vehicle_num) == vehicle_num:
+                if self.slots[i].vehicle_num == vehicle_num:
                     return self.slots[i].slot_id
+
+    def vehicle_registration_number_for_driver_of_age(self, age):
+        vehicle_reg_nos = []
+        for i in range(len(self.slots)):
+            if isinstance(self.slots[i], Car):
+                if int(self.slots[i].driver_age) == age:
+                    vehicle_reg_nos.append(self.slots[i].vehicle_num)
+        return vehicle_reg_nos
+
 
