@@ -13,7 +13,7 @@ if __name__ == '__main__':
             vehicle_no = a[1]
             age = a[3]
             if int(age) >= 18:
-                print("Assigned %s" % parkinglot.assign_vehicle_parking(vehicle_no, age))
+                parkinglot.assign_vehicle_parking(vehicle_no, age)
             else:
                 print("Driver is minor")
         elif a[0] == 'Slot_numbers_for_driver_of_age':
@@ -22,6 +22,7 @@ if __name__ == '__main__':
         elif a[0] == 'Leave':
             parkinglot.leave_the_parking_lot(int(a[1]))
         elif a[0] == 'Slot_number_for_car_with_number':
-            print(parkinglot.slot_number_for_car_with_number(a[1]))
+            print("Car with registration number %s has been parked at slot number %s"
+                  % (a[1], parkinglot.slot_number_for_car_with_number(a[1])))
         elif a[0] == 'Vehicle_registration_number_for_driver_of_age':
-            print("Vehicle_registration_number_for_driver_of_age")
+            print("All the parked vehicle registration number of cars parked by driver if age %s are" % a[1], parkinglot.vehicle_registration_number_for_driver_of_age(int(a[1])))
